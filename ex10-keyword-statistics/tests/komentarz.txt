@@ -1,0 +1,43 @@
+
+Dla wszystkich wersji jest ten sam 
+dziesiêcioznakowy alfabet: ABCDEabcde 
+
+Znaleziono 200 s³ów.
+
+W tym 20 ró¿nych (wersje AK,AL)
+
+ABBA  =17   ABEBA = 9   BABA  =14   BACA  =12 
+Baca  =15   CADEB = 4   CaDeB = 5   Ced   =16 
+DEBAC = 6   Decad = 6   ED    = 8   EDDA  =12 
+EDda  = 3   Edda  = 8   abba  =11   baba  =16
+baca  =14   cAdEb =13   ceD   = 4   debac = 7
+
+W tym 10 ró¿nych ( po zamianie ma³ych liter
+                   na du¿e, wersje BK,BL )
+
+ABBA  =28   ABEBA = 9   BABA  =30   BACA  =41 
+CADEB =22   CED   =20   DEBAC =13   DECAD = 6 
+ED    = 8   EDDA  =23
+
+Wersja AK: 7 podanych s³ów kluczowych
+w kolejnoœci leksykograficznej:
+ ABBA  BACA  CaDeB  Decad  EDda  baba  ceD
+
+Wersja AL: 6 najczêœciej wystêpuj¹cych s³ów 
+w kolejnoœci leksykograficznej:
+ ABBA  BABA  Baca  Ced  baba  baca
+
+Wersja BK: 4 podane s³owa kluczowe
+w kolejnoœci leksykograficznej:
+ ABBA  BACA  DEBAC  EDDA
+
+Wersja BL: 5 najczêœciej wystêpuj¹cych s³ów 
+w kolejnoœci leksykograficznej:
+ ABBA  BABA  BACA  CADEB  EDDA
+
+Uwaga:
+Mog¹ zdarzyæ siê dane, dla których wyniki
+s¹ niejednoznaczne lub bezsensowne.
+Wówczas nale¿y w pliku wyników zapisaæ
+informacjê o b³êdzie lub wybraæ jedno 
+z rozwi¹zañ.

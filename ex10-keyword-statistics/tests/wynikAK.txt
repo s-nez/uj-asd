@@ -1,0 +1,21 @@
+Wersja AK
+   7           ró¿nych s³ów kluczowych
+ 200           wyst¹pieñ wszystkich s³ów
+  63   31.5%   wyst¹pieñ s³ów kluczowych
+ 137   68.5%   wyst¹pieñ innych s³ów
+   0    0.0%
+  17    8.5%   ABBA 
+  23   11.5%
+  12    6.0%   BACA
+  19    9.5%
+   5    2.5%   CaDeB
+  22   11.0%
+   6    3.0%   Decad
+  20   10.0%
+   3    1.5%   EDda
+  19    9.5%
+  16    8.0%   baba
+  27   13.5%
+   4    2.0%   ceD
+   7    3.5%
+
