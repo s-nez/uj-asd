@@ -20,7 +20,7 @@ is to be displayed:
 * kind of operation (Insert or Delete)
 * input value
 * rotations (which element was rotated in which way
-or 'no rot' if no rotations occured)
+or "no rot" if no rotations occured)
 * key contained in the root
 * the tree height
 
