@@ -15,8 +15,7 @@ my @keywords = split /\s+/, <>;
 shift @keywords;
 @keywords = sort @keywords;
 my @pre_keyword = map { 0 } @keywords;
-my %kw_counter;
-$kw_counter{$_} = 0 foreach (@keywords);
+my %kw_counter = map { $_ => 0 } @keywords;
 
 my ($words_total, $keywords_total) = (0, 0);
 while (<>) {
