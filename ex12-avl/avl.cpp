@@ -9,7 +9,7 @@ void AVL::insert (int new_element)
 	else if (insert (new_element, root))
 		balance_subtree (root, nullptr);
 	if (!rotation_occurred)
-		summary_buffer << "bez rot, ";
+		summary_buffer << "no rot, ";
 	summary_add_root_and_height();
 }
 
@@ -53,7 +53,7 @@ void AVL::remove (int el_to_remove)
 	if (!empty())
 		remove (el_to_remove, root);
 	if (!rotation_occurred)
-		summary_buffer << "bez rot, ";
+		summary_buffer << "no rot, ";
 	summary_add_root_and_height();
 }
 
