@@ -19,6 +19,8 @@ After each operation, a summary with the following information
 is to be displayed:
 * kind of operation (Insert or Delete)
 * input value
+* in case of deletion of a node with two non-empty subtrees,
+the deleted key and it's replacement
 * rotations (which element was rotated in which way
 or "no rot" if no rotations occured)
 * key contained in the root
