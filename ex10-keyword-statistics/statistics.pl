@@ -14,8 +14,7 @@ chomp (my $alphabet = <>);
 my @keywords = split /\s+/, <>;
 shift @keywords;
 @keywords = sort @keywords;
-my @pre_keyword;
-push @pre_keyword, 0 foreach (@keywords);
+my @pre_keyword = map { 0 } @keywords;
 my %kw_counter;
 $kw_counter{$_} = 0 foreach (@keywords);
 
