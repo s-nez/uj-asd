@@ -17,7 +17,7 @@ The program should contain the following methods/procedures:
 
 After each operation, a summary with the following information
 is to be displayed:
-* kind of operation (Insert o Delete)
+* kind of operation (Insert or Delete)
 * input value
 * rotations (which element was rotated in which way
 or 'no rot' if no rotations occured)
