@@ -1,6 +1,7 @@
 #!/usr/bin/env perl 
 use strict;
 use warnings;
+use feature 'say';
 use Data::Dumper;
 
 use constant prompt   => '> ';
@@ -255,6 +256,35 @@ sub internal_remove {
     }
 }
 
+sub draw {
+    my ($root) = @_;
+    my @canvas;
+    internal_draw($root, 0, \@canvas);
+    say foreach @canvas;
+}
+
+sub internal_draw {
+    my ($node, $level, $canvas) = @_;
+    return unless defined $node;
+
+    push @{$canvas}, '' while (@{$canvas} <= $level);
+    if (is_leaf($node)) {
+        $canvas->[$level] .= "@{$node->{keys}} ";
+    } else {
+        foreach my $index (keys @{ $node->{keys} }) {
+            internal_draw($node->{refs}->[$index], $level + 1, $canvas);
+            $canvas->[$level] .= ' ' x
+              ((length $canvas->[ $level + 1 ]) - (length $canvas->[$level]));
+            $canvas->[$level] .= $node->{keys}->[$index] . ' ';
+            $canvas->[ $level + 1 ] .=
+              ' ' x
+              ((length $canvas->[$level]) - (length $canvas->[ $level + 1 ]));
+        }
+        internal_draw($node->{refs}->[ $#{ $node->{refs} } ],
+            $level + 1, $canvas);
+    }
+}
+
 print prompt;
 while (<>) {
     chomp;
@@ -264,7 +294,9 @@ while (<>) {
         } else {
             insert($_, $tree);
         }
-        print Dumper $tree;
+
+        #print Dumper $tree;
+        draw($tree);
     }
     print prompt;
 }
