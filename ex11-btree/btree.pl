@@ -1,7 +1,6 @@
 #!/usr/bin/env perl 
 use strict;
 use warnings;
-use feature 'say';
 use Data::Dumper;
 
 use constant prompt   => '> ';
@@ -26,7 +25,7 @@ sub is_leaf {
     return @{ $node->{refs} } == 0;
 }
 
-# Find a place to internal_insert $elem into $array (reference),
+# Find a place to insert $elem into $array (reference),
 # may be the end of array
 sub ordered_find {
     my ($elem, $array) = @_;
@@ -194,7 +193,10 @@ sub underflow_fixup {
             return;
         }
 
-        my $left_sibling = $node->{refs}->[ $child_index - 1 ];
+        my $left_sibling;
+
+        # Avoid taking the last element (index -1) as left sibling
+        $left_sibling = $node->{refs}->[ $child_index - 1 ] if $child_index;
         if (has_extra_keys($left_sibling)) {
             rotate_right($left_sibling, $node, $child_index - 1);
             return;
@@ -209,13 +211,25 @@ sub underflow_fixup {
     return;
 }
 
+# Remove the smallest element from given subtree and return it's value
+sub get_new_separator {
+    my ($node) = @_;
+    if (is_leaf($node)) {
+        return shift @{ $node->{keys} };
+    } else {
+        my $separator = get_new_separator($node->{refs}->[0]);
+        underflow_fixup($node, $node->{refs}->[0], 0);
+        return $separator;
+    }
+}
+
 sub remove {
     my ($elem, $root) = @_;
     internal_remove($elem, $root);
 
-    # If the root is empty, it's only child becomes the new root
+    # If the root is empty and has an unempty child, the child becomes the root
     if (is_empty($root)) {
-        $_[1] = $root->{refs}->[0];
+        $_[1] = $root->{refs}->[0] if defined $root->{refs}->[0];
     }
     return;
 }
@@ -225,22 +239,33 @@ sub internal_remove {
     if (is_leaf($node)) {
         key_remove($elem, $node);
     } else {
-        my $index = ordered_find($elem, $node->{keys});
-        my $child = $node->{refs}->[$index];
-        internal_remove($elem, $child);
-        underflow_fixup($node, $child, $index);
+        my $keys = $node->{keys};
+        my $index = ordered_find($elem, $keys);
+
+        # If the element is found, get it's inorder successor (smallest
+        # element from the right subtree) and make it the new separator.
+        if (defined $keys->[$index] and $keys->[$index] == $elem) {
+            $keys->[$index] = get_new_separator($node->{refs}->[ $index + 1 ]);
+            underflow_fixup($node, $node->{refs}->[ $index + 1 ], $index + 1);
+        } else {
+            my $child = $node->{refs}->[$index];
+            internal_remove($elem, $child);
+            underflow_fixup($node, $child, $index);
+        }
     }
 }
 
 print prompt;
 while (<>) {
     chomp;
-    if (exists_in_tree($_, $tree)) {
-        remove($_, $tree);
-    } else {
-        insert($_, $tree);
+    if (/\A\d+\z/ and $_ >= 0 and $_ <= 9999) {
+        if (exists_in_tree($_, $tree)) {
+            remove($_, $tree);
+        } else {
+            insert($_, $tree);
+        }
+        print Dumper $tree;
     }
-    print Dumper $tree;
     print prompt;
 }
 print "\n";
