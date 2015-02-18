@@ -277,11 +277,11 @@ sub internal_draw {
               ((length $canvas->[ $level + 1 ]) - (length $canvas->[$level]));
             $canvas->[$level] .= '(' if ($index == 0);
             $canvas->[$level] .= $node->{keys}->[$index];
-           if ($index == $#{ $node->{keys}}) {
-$canvas->[$level] .= ')';
-           } else {
-$canvas->[$level] .= ' ';
-           }
+            if ($index == $#{ $node->{keys} }) {
+                $canvas->[$level] .= ')';
+            } else {
+                $canvas->[$level] .= ' ';
+            }
             $canvas->[ $level + 1 ] .= ' ' x
               ((length $canvas->[$level]) - (length $canvas->[ $level + 1 ]));
         }
