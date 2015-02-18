@@ -276,8 +276,7 @@ sub internal_draw {
             $canvas->[$level] .= ' ' x
               ((length $canvas->[ $level + 1 ]) - (length $canvas->[$level]));
             $canvas->[$level] .= $node->{keys}->[$index] . ' ';
-            $canvas->[ $level + 1 ] .=
-              ' ' x
+            $canvas->[ $level + 1 ] .= ' ' x
               ((length $canvas->[$level]) - (length $canvas->[ $level + 1 ]));
         }
         internal_draw($node->{refs}->[ $#{ $node->{refs} } ],
