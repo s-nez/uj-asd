@@ -13,6 +13,3 @@ The program should contain the following methods/procedures:
 After each operation a visualisation of the tree should be displayed.
 
 The B-Tree is of order 3 (6 keys per node).
-
-##Note to Cezar
-Jak wstanę przed 17 to wejdę na XMPP i spróbuję wyjaśnić wszelkie wątpliwości. Może zdąże lepsze rysowanie ogarnąć, ale nie gwarantuję.
