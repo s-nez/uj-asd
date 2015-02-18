@@ -269,13 +269,19 @@ sub internal_draw {
 
     push @{$canvas}, '' while (@{$canvas} <= $level);
     if (is_leaf($node)) {
-        $canvas->[$level] .= "@{$node->{keys}} ";
+        $canvas->[$level] .= "(@{$node->{keys}}) ";
     } else {
         foreach my $index (keys @{ $node->{keys} }) {
             internal_draw($node->{refs}->[$index], $level + 1, $canvas);
             $canvas->[$level] .= ' ' x
               ((length $canvas->[ $level + 1 ]) - (length $canvas->[$level]));
-            $canvas->[$level] .= $node->{keys}->[$index] . ' ';
+            $canvas->[$level] .= '(' if ($index == 0);
+            $canvas->[$level] .= $node->{keys}->[$index];
+           if ($index == $#{ $node->{keys}}) {
+$canvas->[$level] .= ')';
+           } else {
+$canvas->[$level] .= ' ';
+           }
             $canvas->[ $level + 1 ] .= ' ' x
               ((length $canvas->[$level]) - (length $canvas->[ $level + 1 ]));
         }
