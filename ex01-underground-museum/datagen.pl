@@ -2,6 +2,13 @@
 use strict;
 use warnings;
 
+# How to use:
+# ./datagen.pl [output file] [museum height] [museum width] [no of paths]
+#
+# All arguments are mandatory. This script generates a museum of given size
+# and [no of paths] requests for paths in a format required by the 
+# exercise specification.
+
 my $range = 100;
 
 die "Not enough arguments" if @ARGV < 4;
