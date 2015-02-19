@@ -83,7 +83,7 @@ sub overflow_fixup {
         # The right half was removed, so childs last element is the median
         my $median = pop @{ $child->{keys} };
 
-        # Insert the median and into the parent
+        # Insert the median into the parent
         splice @{ $node->{keys} }, $child_index, 0, $median;
 
         # Insert a ref to both parts of the split child
