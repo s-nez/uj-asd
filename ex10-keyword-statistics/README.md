@@ -2,7 +2,9 @@
 ## Problem description
 Given an alphabet and a list of keywords, count all occurrences of
 both keywords and non-keywords, grouping the latter into groups
-positioned lexicographically between the keywords.
+positioned lexicographically between the keywords. Words are sets of
+characters from the alphabet, every other character should be treated
+as a separator.
 
 ###Example:
 
