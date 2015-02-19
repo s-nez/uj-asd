@@ -7,37 +7,39 @@
 #include "colors.h"
 
 
-// Uwaga! Publiczne metody indeksują od 1, a prywatne od 0
+// Caution! Public methods start start indexing at 1, public at 0
 class Museum {
 		using coord = std::pair<std::size_t, std::size_t>;
 	public:
 		Museum (std::size_t, std::size_t);
 		~Museum();
 		int& room (std::size_t, std::size_t);
-		// Ścieżka od wejścia do wyjścia z przejściem przez salę o współrzędnych podanych w argumentach
+        // The best path from entry to exit, passing through the given room
 		PathData tour (std::size_t, std::size_t);
-		// Ścieżka bezpośrednia od wejścia do wyjścia
+		// The best direct path from entry to exit
 		PathData entry_to_exit ();
 		bool graphics = false;
 	private:
-		coord entry, exit; // Współrzędne wejścia i wyjścia
-		int** rooms; // Tablica z kosztami sal
-		RoomData** aux_array; // Tablica pomocnicza do alg. Dijsktry
-		bool** aux_path; // Tablica do sptawdzania powtarzających się sal
-		std::size_t height, width; // Rozmiar muzeum
+		coord entry, exit; // Coordinates of entry and exit
+		int** rooms; // An array with the cost of each room
+		RoomData** aux_array; // An auxiliary array for Dijsktra's algorithm
+		bool** aux_path; // Used to check repeating rooms in the path
+		std::size_t height, width; // The museum dimensions
 
 		int& room (coord);
-		RoomData& aux (coord); // Dostęp do tablicy pomocniczej
-		void reset_aux(); // Przywraca tablicę pomocniczą do początkowego stanu
-		void reset_path(); // Czyści tablicę powtórzeń sal
-		inline bool& part_of_path(coord); // Sprawdza, czy sala jest częścią ścieżki
-		inline bool room_exists (coord); // Sprawdza, czy sala istnieje
-		void relax (coord); // Procedura do alg. Dijkstry
-		// Określa w którym kierunku jest drugi argument względem pierwszego
+		RoomData& aux (coord); // Accessor for aux_array
+		void reset_aux(); // Restores aux_array to the default state
+		void reset_path(); // Clears aux_path
+        // Checks whether a room is a part of the path
+		inline bool& part_of_path(coord); 
+		inline bool room_exists (coord); // Check if a room exists
+		void relax (coord); // Auxiliary procedure for Dijkstra's algorithm
+		// Determines in which direction we need to move to get from one
+        // room to another. Returns E, W, N or S
 		char move_direction (coord, coord);
-		void show_aux_dist(); // Wyświetla odległości z tablicy pomocniczej
-		void show_path(); // Wyświetla przejście po oryginalnej tablicy
-		// Oblicza najtańsze przejście miedzy dwoma punktami algorytmem Dijkstry
+		void show_aux_dist(); // Displays the content of aux_array
+		void show_path(); // Displays the museum map, colouring the path
+        // Calculates best path between two points using Dijkstra's algorithm
 		PathData cheapest_path (coord, coord);
 };
 

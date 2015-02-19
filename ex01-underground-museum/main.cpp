@@ -8,7 +8,7 @@
 int main (int argc, char** argv)
 {
 	if (argc < 2) {
-		std::cout << "Podaj nazwę pliku jako argument programu\n";
+		std::cout << "You need to specify a filename\n";
 		return 1;
 	}
 
@@ -16,7 +16,7 @@ int main (int argc, char** argv)
 	input.open (argv[1]);
 
 	if (!input) {
-		std::cout << "Nie udało się otworzyć pliku\n";
+		std::cout << "Error while opening file\n";
 		return 1;
 	}
 
@@ -37,15 +37,6 @@ int main (int argc, char** argv)
 		input >> target_h >> target_w;
 	}
 	std::cout << ug_museum.entry_to_exit() << '\n';
-
-	// Display the museum
-	//for (std::size_t h = 1; h <= ug_museum.height; ++h) {
-	//for (std::size_t w = 1; w <= ug_museum.width; ++w) {
-	//std::cout << ug_museum.room (h, w) << ' ';
-	//}
-	//std::cout << '\n';
-	//}
-	// End of display
 
 	input.close();
 	return 0;
