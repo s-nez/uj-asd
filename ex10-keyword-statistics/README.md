@@ -6,25 +6,33 @@ positioned lexicographically between the keywords.
 
 ###Example:
 
-keywords: **carrot**, **mushroom**, **train**
-non-keywords: animation, ball, cartoon, crate, graph, mouse, name, park, zebra
+**keywords**: carrot, mushroom, train  
+**non-keywords**: animation, ball, cartoon, crate, graph, mouse, name, park, zebra  
 
-non-keywords groups:
-group 0: words before **carrot:**
-animation, ball
-group 1: words between **carrot** and **mushroom**
-cartoon, crate, graph, mouse
-group 2: words between **mushroom** and **train**
-name, zebra
-group 3: words after **train**
-zebra
+####Groups of non-keywords:  
+words before **carrot:**  
+- animation
+- ball
+
+words between **carrot** and **mushroom**  
+- cartoon
+- crate
+- graph
+- mouse
+
+words between **mushroom** and **train**  
+- name
+- park
+
+words after **train**  
+- zebra  
 
 ## Technical requirements
 The input is a file with the following structure:
 ````
-\[alphabet\]
-\[number of keywords\] \[keywords\]...
-\[text to process\]
+[alphabet]
+[number of keywords] [keywords]...
+[text to process]
 ````
 
 The following information should be printed to the standard output:
