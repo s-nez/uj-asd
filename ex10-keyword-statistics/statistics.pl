@@ -33,14 +33,13 @@ while (<>) {
     }
 }
 
-say 'Wersja AK';
-say scalar @keywords, "\t\tróżnych słów kluczowych";
-say $words_total, "\t\twystąpień wszystkich słów";
+say scalar @keywords, "\t\tdistinct keywords";
+say $words_total, "\t\twords total";
 say $keywords_total, "\t", percent($keywords_total, $words_total),
-  "\twystąpień słów kluczowych";
+  "\tkeywords total";
 my $non_keywords = $words_total - $keywords_total;
 say $non_keywords, "\t", percent($non_keywords, $words_total),
-  "\twystąpień innych słów";
+  "\tnon-keywords total";
 foreach (keys @keywords) {
     display_keyword_data $pre_keyword[$_], $words_total;
     display_keyword_data $kw_counter{ $keywords[$_] }, $words_total,
